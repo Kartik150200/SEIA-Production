@@ -1,0 +1,623 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-paper: var(--paper);
+  --color-cream: var(--cream);
+  --color-sand: var(--sand);
+  --color-bark: var(--bark);
+  --font-display: "Libre Baskerville", ui-serif, Georgia, serif;
+  --font-serif: "Libre Baskerville", ui-serif, Georgia, serif;
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.375rem;
+
+  /* Warm Sand palette */
+  --paper: oklch(0.98 0.006 85);      /* #faf8f5 */
+  --cream: oklch(0.94 0.012 80);      /* #f0ebe3 */
+  --sand:  oklch(0.78 0.036 82);      /* #c9b99a */
+  --bark:  oklch(0.55 0.045 67);      /* #8b7355 */
+
+  --background: var(--paper);
+  --foreground: oklch(0.35 0.03 65);
+
+  --surface: oklch(0.96 0.008 82);
+  --surface-elevated: var(--cream);
+
+  --ink: oklch(0.28 0.025 60);
+  --ink-soft: oklch(0.5 0.03 65);
+
+  --card: oklch(0.965 0.008 82);
+  --card-foreground: oklch(0.35 0.03 65);
+  --popover: var(--paper);
+  --popover-foreground: oklch(0.3 0.025 60);
+
+  --primary: var(--bark);
+  --primary-foreground: var(--paper);
+  --gold: var(--bark);
+  --gold-soft: oklch(0.68 0.04 72);
+
+  --secondary: oklch(0.9 0.014 78);
+  --secondary-foreground: oklch(0.35 0.03 65);
+  --muted: var(--cream);
+  --muted-foreground: oklch(0.5 0.03 65);
+  --accent: var(--sand);
+  --accent-foreground: oklch(0.28 0.025 60);
+  --destructive: oklch(0.55 0.18 30);
+  --destructive-foreground: var(--paper);
+  --border: oklch(0.78 0.036 82 / 40%);
+  --input: oklch(0.85 0.02 80);
+  --ring: oklch(0.55 0.045 67 / 40%);
+}
+
+/* ==========================================================
+   SEIA theme overrides — mirrors seia.com
+   Palette: navy #02014a (primary), indigo #363363 (accent/hover),
+   white. Typography: Inter throughout (no cursive, no light blue).
+   Applied when <html data-site-theme="seia">.
+   ========================================================== */
+[data-site-theme="seia"] {
+  --paper: #ffffff;
+  --cream: #f4f7fc;
+  --sand:  #363363;    /* blue-light, used as accent */
+  --bark:  #02014a;    /* deep navy, used as primary */
+
+  --background: #ffffff;
+  --foreground: #02014a;
+
+  --surface: #ffffff;
+  --surface-elevated: #f4f7fc;
+
+  --ink: #02014a;
+  --ink-soft: #02014a;
+
+  --card: #ffffff;
+  --card-foreground: #02014a;
+  --popover: #ffffff;
+  --popover-foreground: #02014a;
+
+  --primary: #02014a;
+  --primary-foreground: #ffffff;
+  --gold: #02014a;
+  --gold-soft: #363363;
+
+  --secondary: #eef2fb;
+  --secondary-foreground: #02014a;
+  --muted: #f4f7fc;
+  --muted-foreground: #5c6a94;   /* lighter blue-gray for hierarchy */
+  --accent: #363363;         /* muted indigo — highlights & hover */
+  --accent-foreground: #ffffff;
+  --border: rgba(1, 1, 74, 0.18);
+  --input: rgba(1, 1, 74, 0.22);
+  --ring: rgba(54, 51, 99, 0.45);
+
+  --font-serif: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+[data-site-theme="seia"],
+[data-site-theme="seia"] body {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  color: #02014a;
+}
+
+[data-site-theme="seia"] h1,
+[data-site-theme="seia"] h2,
+[data-site-theme="seia"] h3,
+[data-site-theme="seia"] h4,
+[data-site-theme="seia"] .font-serif,
+[data-site-theme="seia"] .font-display {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+  color: #02014a;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+/* Italic accents use Inter italic (matches seia.com), no cursive */
+[data-site-theme="seia"] h1 .italic,
+[data-site-theme="seia"] h2 .italic,
+[data-site-theme="seia"] h3 .italic,
+[data-site-theme="seia"] em {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+  font-style: italic;
+  font-weight: 500;
+  color: #02014a;
+}
+
+/* Force warm-palette utilities into the blue/white scheme */
+[data-site-theme="seia"] .bg-paper,
+[data-site-theme="seia"] .bg-paper\/60,
+[data-site-theme="seia"] .bg-paper\/70,
+[data-site-theme="seia"] .bg-paper\/80 {
+  background-color: #ffffff !important;
+}
+[data-site-theme="seia"] .bg-cream,
+[data-site-theme="seia"] .bg-cream\/60 {
+  background-color: #f4f7fc !important;
+}
+[data-site-theme="seia"] .text-ink,
+[data-site-theme="seia"] .text-ink\/70,
+[data-site-theme="seia"] .text-ink\/80 {
+  color: #02014a !important;
+}
+[data-site-theme="seia"] .text-ink-soft,
+[data-site-theme="seia"] .text-bark,
+[data-site-theme="seia"] .text-bark\/60,
+[data-site-theme="seia"] .text-bark\/70,
+[data-site-theme="seia"] .text-bark\/80 {
+  color: #02014a !important;
+}
+[data-site-theme="seia"] .border-sand,
+[data-site-theme="seia"] .border-sand\/40,
+[data-site-theme="seia"] .border-sand\/50,
+[data-site-theme="seia"] .border-sand\/60 {
+  border-color: rgba(2, 1, 74, 0.22) !important;
+}
+[data-site-theme="seia"] .bg-bark {
+  background-color: #02014a !important;
+}
+/* Nav links legibility on dark navy bar */
+[data-site-theme="seia"] nav a,
+[data-site-theme="seia"] nav button {
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+  transition: color .18s ease, background-color .18s ease,
+              box-shadow .18s ease, border-color .18s ease;
+}
+[data-site-theme="seia"] nav a:hover,
+[data-site-theme="seia"] nav button:hover,
+[data-site-theme="seia"] nav a[data-status="active"],
+[data-site-theme="seia"] nav a[data-active="true"] {
+  color: #ffffff !important;
+  background-color: transparent !important;
+}
+[data-site-theme="seia"] nav a:focus-visible,
+[data-site-theme="seia"] nav button:focus-visible {
+  outline: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 2px #02014a, 0 0 0 4px #ffffff !important;
+  border-radius: 4px;
+}
+[data-site-theme="seia"] .grid-bg {
+  background-color: #ffffff !important;
+  background-image:
+    radial-gradient(circle at 15% 8%, rgba(2, 1, 74, 0.06), transparent 45%),
+    radial-gradient(circle at 85% 92%, rgba(2, 1, 74, 0.05), transparent 50%) !important;
+}
+[data-site-theme="seia"] .paper-grain {
+  background-image:
+    radial-gradient(rgba(2, 1, 74, 0.05) 1px, transparent 1px) !important;
+  background-size: 3px 3px !important;
+}
+
+/* ---------- SEIA mode: typography rhythm ---------- */
+[data-site-theme="seia"] body {
+  font-weight: 400;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+}
+[data-site-theme="seia"] .font-mono,
+[data-site-theme="seia"] [class*="tracking-["] {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+}
+[data-site-theme="seia"] .uppercase {
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+/* ---------- SEIA mode: buttons, links, badges ---------- */
+[data-site-theme="seia"] button,
+[data-site-theme="seia"] .btn,
+[data-site-theme="seia"] [role="button"] {
+  transition: background-color .18s ease, color .18s ease,
+              border-color .18s ease, box-shadow .18s ease;
+}
+[data-site-theme="seia"] a:not(nav a) { color: #02014a; }
+[data-site-theme="seia"] a:not(nav a):hover { color: #363363; text-decoration-color: #363363; }
+[data-site-theme="seia"] a:not(nav a):focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(2, 1, 74, 0.25);
+  border-radius: 3px;
+}
+[data-site-theme="seia"] a.underline,
+[data-site-theme="seia"] a[class*="underline"] { text-decoration-color: #363363; }
+
+/* Inter across headings, buttons, labels, and form controls */
+[data-site-theme="seia"] button,
+[data-site-theme="seia"] .btn,
+[data-site-theme="seia"] [role="button"],
+[data-site-theme="seia"] label,
+[data-site-theme="seia"] input,
+[data-site-theme="seia"] textarea,
+[data-site-theme="seia"] select,
+[data-site-theme="seia"] h1,
+[data-site-theme="seia"] h2,
+[data-site-theme="seia"] h3,
+[data-site-theme="seia"] h4,
+[data-site-theme="seia"] h5,
+[data-site-theme="seia"] h6 {
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif !important;
+}
+[data-site-theme="seia"] label {
+  color: #02014a;
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* Non-nav button hover/focus visibility */
+[data-site-theme="seia"] .bg-bark:hover,
+[data-site-theme="seia"] .bg-ink:hover,
+[data-site-theme="seia"] .bg-primary:hover {
+  background-color: #363363 !important;
+}
+[data-site-theme="seia"] button:focus-visible:not(nav button) {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(2, 1, 74, 0.35) !important;
+}
+
+/* Primary / bark buttons → SEIA navy blue with white text */
+[data-site-theme="seia"] .bg-bark,
+[data-site-theme="seia"] .bg-ink,
+[data-site-theme="seia"] .bg-primary {
+  background-color: #02014a !important;
+  color: #ffffff !important;
+}
+[data-site-theme="seia"] .bg-bark:hover,
+[data-site-theme="seia"] .bg-ink:hover,
+[data-site-theme="seia"] .bg-primary:hover,
+[data-site-theme="seia"] .hover\:bg-bark:hover,
+[data-site-theme="seia"] .hover\:bg-ink:hover {
+  background-color: #02014a !important;
+}
+[data-site-theme="seia"] .text-primary,
+[data-site-theme="seia"] .text-gold,
+[data-site-theme="seia"] .text-gold-soft {
+  color: #02014a !important;
+}
+[data-site-theme="seia"] .bg-gold,
+[data-site-theme="seia"] .bg-gold-soft {
+  background-color: #02014a !important;
+  color: #ffffff !important;
+}
+[data-site-theme="seia"] .text-gold-gradient {
+  background-image: linear-gradient(135deg, #02014a, #363363) !important;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+}
+[data-site-theme="seia"] .gold-gradient {
+  background-image: linear-gradient(135deg, #02014a, #363363) !important;
+}
+
+/* Badge / chip surfaces */
+[data-site-theme="seia"] .bg-sand,
+[data-site-theme="seia"] .bg-sand\/40,
+[data-site-theme="seia"] .bg-sand\/60,
+[data-site-theme="seia"] .bg-accent,
+[data-site-theme="seia"] .bg-muted {
+  background-color: #eef2fb !important;
+  color: #02014a !important;
+}
+
+/* ---------- SEIA mode: form inputs ---------- */
+[data-site-theme="seia"] input,
+[data-site-theme="seia"] textarea,
+[data-site-theme="seia"] select {
+  background-color: #ffffff !important;
+  color: #02014a !important;
+  border-color: rgba(2, 1, 74, 0.22) !important;
+}
+[data-site-theme="seia"] input::placeholder,
+[data-site-theme="seia"] textarea::placeholder { color: #363363 !important; }
+[data-site-theme="seia"] input:focus,
+[data-site-theme="seia"] textarea:focus,
+[data-site-theme="seia"] select:focus,
+[data-site-theme="seia"] button:focus-visible,
+[data-site-theme="seia"] a:focus-visible {
+  outline: none;
+  border-color: #02014a !important;
+  box-shadow: 0 0 0 3px rgba(2, 1, 74, 0.18) !important;
+}
+
+/* ---------- SEIA mode: cards, borders, shadows ---------- */
+[data-site-theme="seia"] .rounded-sm,
+[data-site-theme="seia"] .rounded,
+[data-site-theme="seia"] .rounded-md,
+[data-site-theme="seia"] .rounded-lg,
+[data-site-theme="seia"] .rounded-xl,
+[data-site-theme="seia"] .rounded-2xl { border-radius: 4px; }
+
+[data-site-theme="seia"] [class*="border"] {
+  border-color: rgba(2, 1, 74, 0.14);
+}
+[data-site-theme="seia"] .shadow,
+[data-site-theme="seia"] .shadow-sm,
+[data-site-theme="seia"] .shadow-md,
+[data-site-theme="seia"] .shadow-lg,
+[data-site-theme="seia"] .shadow-xl {
+  box-shadow: 0 1px 2px rgba(1, 1, 76, 0.04),
+              0 8px 24px -12px rgba(1, 1, 76, 0.10) !important;
+}
+
+/* ---------- SEIA mode: charts + SVGs ---------- */
+/* Recharts axis + grid re-tint to blue palette */
+[data-site-theme="seia"] .recharts-cartesian-axis text,
+[data-site-theme="seia"] .recharts-legend-item-text,
+[data-site-theme="seia"] .recharts-text {
+  fill: #02014a !important;
+  font-family: "Inter", sans-serif !important;
+}
+[data-site-theme="seia"] .recharts-cartesian-grid line,
+[data-site-theme="seia"] .recharts-cartesian-axis-line,
+[data-site-theme="seia"] .recharts-cartesian-axis-tick-line {
+  stroke: rgba(2, 1, 74, 0.14) !important;
+}
+[data-site-theme="seia"] .recharts-tooltip-wrapper .recharts-default-tooltip {
+  background: #ffffff !important;
+  border: 1px solid rgba(2, 1, 74, 0.22) !important;
+  color: #02014a !important;
+  box-shadow: 0 8px 24px -12px rgba(1, 1, 76, 0.18) !important;
+}
+
+/* Sparkline/lead-glow amber → SEIA blue */
+[data-site-theme="seia"] svg [stroke="#c9a84c"],
+[data-site-theme="seia"] svg [stroke="#a07a2a"],
+[data-site-theme="seia"] svg [stroke="#8b7355"] { stroke: #02014a !important; }
+[data-site-theme="seia"] svg [fill="#c9a84c"],
+[data-site-theme="seia"] svg [fill="#a07a2a"],
+[data-site-theme="seia"] svg [fill="#8b7355"] { fill: #02014a !important; }
+
+/* Recolor bar/pie charts to blue shades so branch/program charts
+   read as distinct blues; keep Schwab yellow and SLA green/red. */
+[data-site-theme="seia"] svg [fill="oklch(0.62 0.14 60)"] { fill: #1b2a78 !important; }  /* referrals bar (branch) — mid navy blue */
+[data-site-theme="seia"] svg [fill="oklch(0.55 0.13 145)"] { fill: #6d8bd6 !important; } /* won bar (branch) — light blue */
+[data-site-theme="seia"] svg [fill="oklch(0.55 0.09 45)"] { fill: #363363 !important; }  /* pie slice fallback */
+[data-site-theme="seia"] svg [fill="oklch(0.55 0.13 200)"] { fill: #02014a !important; } /* sources referrals */
+[data-site-theme="seia"] svg [fill="oklch(0.82 0.14 82)"] { fill: #6d8bd6 !important; }  /* sources won */
+[data-site-theme="seia"] svg [stroke="oklch(0.98 0.006 85)"] { stroke: #ffffff !important; } /* pie slice divider */
+
+/* AUM by program donut: three distinct blue shades in SEIA mode */
+[data-site-theme="seia"] .aum-by-program-chart svg [fill="oklch(0.75 0.14 82)"] { fill: #02014a !important; }
+[data-site-theme="seia"] .aum-by-program-chart svg [fill="oklch(0.62 0.14 60)"] { fill: #1b2a78 !important; }
+[data-site-theme="seia"] .aum-by-program-chart svg [fill="oklch(0.55 0.09 45)"] { fill: #6d8bd6 !important; }
+
+/* NOTE: oklch(0.75 0.14 82) — Schwab / warm yellow — intentionally NOT overridden globally
+   so the AUM contribution donut keeps Schwab yellow in SEIA mode.
+   oklch(0.75 0.16 150) — Within SLA green — and oklch(0.65 0.22 25) — Breached red —
+   are intentionally NOT overridden so the SLA chart keeps green + red in SEIA mode. */
+
+/* Highlighted / hovered surfaces use the muted indigo (image 2)
+   instead of the warm amber/red tints from warm mode. */
+[data-site-theme="seia"] .bg-accent,
+[data-site-theme="seia"] .hover\:bg-accent:hover,
+[data-site-theme="seia"] [class*="bg-amber-"],
+[data-site-theme="seia"] [class*="bg-yellow-"],
+[data-site-theme="seia"] [class*="bg-red-"],
+[data-site-theme="seia"] [class*="bg-rose-"],
+[data-site-theme="seia"] [class*="bg-orange-"] {
+  background-color: #363363 !important;
+  color: #ffffff !important;
+  border-color: rgba(54, 51, 99, 0.35) !important;
+}
+[data-site-theme="seia"] [class*="bg-amber-"] *,
+[data-site-theme="seia"] [class*="bg-yellow-"] *,
+[data-site-theme="seia"] [class*="bg-red-"] *,
+[data-site-theme="seia"] [class*="bg-rose-"] *,
+[data-site-theme="seia"] [class*="bg-orange-"] * {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+}
+/* Same-element bg-*-* + text-*-* combo (e.g. "Needs attention" pill):
+   force the text to white so it stays readable on indigo. */
+[data-site-theme="seia"] [class*="bg-amber-"][class*="text-amber-"],
+[data-site-theme="seia"] [class*="bg-yellow-"][class*="text-yellow-"],
+[data-site-theme="seia"] [class*="bg-red-"][class*="text-red-"],
+[data-site-theme="seia"] [class*="bg-rose-"][class*="text-rose-"],
+[data-site-theme="seia"] [class*="bg-orange-"][class*="text-orange-"] {
+  color: #ffffff !important;
+}
+/* Small dot inside the status pill — force white too */
+[data-site-theme="seia"] [class*="bg-amber-"] [class*="bg-amber-"],
+[data-site-theme="seia"] [class*="bg-red-"] [class*="bg-red-"],
+[data-site-theme="seia"] [class*="bg-rose-"] [class*="bg-rose-"],
+[data-site-theme="seia"] [class*="bg-orange-"] [class*="bg-orange-"],
+[data-site-theme="seia"] [class*="bg-yellow-"] [class*="bg-yellow-"] {
+  background-color: #ffffff !important;
+}
+/* Amber/red foreground text on plain surfaces → indigo so it stays legible.
+   Same-element rule above already forces white when both bg+text classes
+   are on one element. */
+[data-site-theme="seia"] [class*="text-amber-"],
+[data-site-theme="seia"] [class*="text-orange-"],
+[data-site-theme="seia"] [class*="text-red-"],
+[data-site-theme="seia"] [class*="text-rose-"],
+[data-site-theme="seia"] [class*="text-yellow-"] {
+  color: #363363 !important;
+}
+[data-site-theme="seia"] [class*="bg-amber-"] [class*="text-amber-"],
+[data-site-theme="seia"] [class*="bg-yellow-"] [class*="text-yellow-"],
+[data-site-theme="seia"] [class*="bg-red-"] [class*="text-red-"],
+[data-site-theme="seia"] [class*="bg-rose-"] [class*="text-rose-"],
+[data-site-theme="seia"] [class*="bg-orange-"] [class*="text-orange-"] {
+  color: #ffffff !important;
+}
+
+/* Dashboard sub-tabs — proper active/hover highlights (image 2).
+   The active sub-tab uses border-gold which our generic border rule
+   was fading; force a strong navy underline + subtle bg on active,
+   and give inactive tabs a lift on hover. */
+[data-site-theme="seia"] .border-gold {
+  border-color: #02014a !important;
+}
+[data-site-theme="seia"] button[class*="border-b-2"][class*="border-gold"] {
+  background-color: rgba(2, 1, 74, 0.06);
+  color: #02014a !important;
+  border-bottom-color: #02014a !important;
+}
+[data-site-theme="seia"] button[class*="border-b-2"]:hover {
+  color: #02014a !important;
+  background-color: rgba(2, 1, 74, 0.04);
+}
+
+/* Lifecycle figure (image 1) — retint amber warm palette to SEIA blue
+   while keeping the light card background legible. */
+[data-site-theme="seia"] .lifecycle-figure svg [stop-color="oklch(0.85 0.16 78)"],
+[data-site-theme="seia"] .lifecycle-figure svg stop[stop-color="oklch(0.85 0.16 78)"] { stop-color: #02014a !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [stop-color="oklch(0.72 0.13 72)"],
+[data-site-theme="seia"] .lifecycle-figure svg stop[stop-color="oklch(0.72 0.13 72)"] { stop-color: #363363 !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [stroke="oklch(0.55 0.045 67 / 0.55)"] { stroke: rgba(2, 1, 74, 0.55) !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [stroke="oklch(0.45 0.05 65)"] { stroke: #02014a !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [fill="oklch(0.25 0.02 60)"] { fill: #02014a !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [fill="oklch(0.35 0.04 65)"] { fill: #02014a !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [fill="oklch(0.45 0.03 65)"] { fill: #363363 !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [fill="oklch(0.4 0.03 60)"] { fill: #02014a !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [stroke="oklch(0.35 0.04 65)"] { stroke: #02014a !important; }
+[data-site-theme="seia"] .lifecycle-figure svg [stroke="oklch(0.82 0.02 70)"] { stroke: rgba(2, 1, 74, 0.35) !important; }
+
+/* Podium bronze medal (image 4) — swap warm bronze for SEIA indigo. */
+[data-site-theme="seia"] svg [fill="oklch(0.6 0.08 60)"] { fill: #363363 !important; }
+
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-weight: 300;
+  }
+  h1, h2, h3, .font-display, .font-serif {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    color: var(--ink);
+  }
+  ::selection {
+    background-color: oklch(0.78 0.036 82 / 0.4);
+  }
+  /* Bump tiny type site-wide (+3px) for readability */
+  .text-xs { font-size: 15px; line-height: 1.45; }
+  [class*="text-[9px]"] { font-size: 12px !important; }
+  [class*="text-[10px]"] { font-size: 13px !important; }
+  [class*="text-[11px]"] { font-size: 14px !important; }
+  [class*="text-[12px]"] { font-size: 15px !important; }
+}
+
+
+@utility gold-gradient {
+  background-image: linear-gradient(135deg, oklch(0.6 0.05 65), oklch(0.5 0.05 60));
+}
+
+@utility text-gold-gradient {
+  background-image: linear-gradient(135deg, oklch(0.5 0.05 62), oklch(0.62 0.05 70));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-bg {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 15% 8%, oklch(0.78 0.036 82 / 0.18), transparent 45%),
+    radial-gradient(circle at 85% 92%, oklch(0.55 0.045 67 / 0.08), transparent 50%);
+}
+
+@utility paper-grain {
+  background-image:
+    radial-gradient(oklch(0.55 0.045 67 / 0.04) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+@utility hair-rule {
+  border-color: oklch(0.78 0.036 82 / 0.5);
+}
+
+@keyframes flow-dash {
+  to { stroke-dashoffset: -24; }
+}
+@utility flow-line {
+  stroke-dasharray: 6 6;
+  animation: flow-dash 1.2s linear infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.55 0.045 67 / 0.45); }
+  70% { box-shadow: 0 0 0 10px oklch(0.55 0.045 67 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.55 0.045 67 / 0); }
+}
+@utility pulse-gold {
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes marker-glow {
+  0%, 100% { box-shadow: 0 0 0 0 oklch(0.55 0.045 67 / 0.5); }
+  50% { box-shadow: 0 0 0 8px oklch(0.55 0.045 67 / 0); }
+}
+@utility marker-glow {
+  animation: marker-glow 1.6s ease-in-out infinite;
+}
+
+/* Fig. 01 — traveling lead pulse + node beat */
+@keyframes fig-flow-dash {
+  to { stroke-dashoffset: -32; }
+}
+.fig-flow {
+  stroke-dasharray: 5 5;
+  animation: fig-flow-dash 1.6s linear infinite;
+}
+@keyframes fig-lane-shimmer {
+  0% { transform: translateX(-40%); opacity: 0; }
+  20%, 60% { opacity: 1; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+.fig-lane-shimmer {
+  animation: fig-lane-shimmer 9s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .fig-flow,
+  .fig-lane-shimmer { animation: none !important; }
+}
